@@ -145,7 +145,8 @@ jobs:
       shell: bash -l {0}
       run: |
            GIT_TAG=$(git describe --tags --exact-match 2>/dev/null || true)
-           if [[ "${GIT_TAG}" != "" ]] ; then
+           if [[ 1 = 1 ]] ; then
+             echo "################## inside wheel build ######################"
              echo "GIT_TAG $GIT_TAG"
              
              # install some needed packages

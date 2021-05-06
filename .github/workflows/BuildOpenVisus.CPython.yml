@@ -18,7 +18,7 @@ jobs:
     
     # ____________________________________________ CLONE OPENVISUS
     
-    - name: git clone OpenVisus
+    - name: do git clone OpenVisus
       uses: actions/checkout@v2
      
     - name: git clone opsray for windows

@@ -83,6 +83,10 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       shell: bash -l {0}
       run: sudo apt-get update && sudo apt-get install libglu1-mesa-dev 1>/dev/null
+      
+    - name: Install qemu on ubuntu
+      if: matrix.os == 'ubuntu-latest'
+      uses: docker/setup-qemu-action@v1
 
 
     # ____________________________________________ INSTALL CPYTHON (after QT since it seems Qt action will install python 3.9)
@@ -153,6 +157,7 @@ jobs:
              if [[  "${{ matrix.os }}" == "windows-latest" ]] ; then PLATFORM_NAME=win_amd64            ; fi
              if [[  "${{ matrix.os }}" == "macos-latest"   ]] ; then PLATFORM_NAME=macosx_10_9_x86_64   ; fi
              if [[  "${{ matrix.os }}" == "ubuntu-latest"  ]] ; then PLATFORM_NAME=manylinux2010_x86_64 ; fi
+             if [[  "${{ matrix.os }}" == "ubuntu-latest"  ]] ; then PLATFORM_NAME=manylinux2014_aarch64 ; fi
              ${pythonLocation}/python setup.py -q bdist_wheel --python-tag=cp${Version:0:1}${Version:2:1} --plat-name=${PLATFORM_NAME}
              
              # upload the weel
